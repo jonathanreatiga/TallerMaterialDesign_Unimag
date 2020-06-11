@@ -25,5 +25,10 @@
     <string name="btnLimpiarVehiculo">Limpiar</string>
     <string name="mensaje_guardado_correcto">Vehiculo guardado Exitosamente</string>
     <string name="titulo_detalle">Detalle Vehiculo</string>
+    <string name="etiqueta_boton_eliminar">Eliminar</string>
+    <string name="titulo_eliminar_persona">Eliminar Vehiculo</string>
+    <string name="pregunta_mensaje_eliminar">¿Está seguro que desea eliminar a este vehiculo?</string>
+    <string name="opcion_si">Si</string>
+    <string name="opcion_no">No</string>
 
 </resources>
