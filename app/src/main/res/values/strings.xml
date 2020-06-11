@@ -24,5 +24,6 @@
     <string name="btnAgregarVehiculo">Agregar</string>
     <string name="btnLimpiarVehiculo">Limpiar</string>
     <string name="mensaje_guardado_correcto">Vehiculo guardado Exitosamente</string>
+    <string name="titulo_detalle">Detalle Vehiculo</string>
 
 </resources>

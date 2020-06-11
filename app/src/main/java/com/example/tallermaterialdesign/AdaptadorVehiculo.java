@@ -3,19 +3,21 @@ package com.example.tallermaterialdesign;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.PersonaViewHolder>{
     private ArrayList<Vehiculo> vehiculos;
+    private OnVehiculoClickListener clickListener;
 
-    public AdaptadorVehiculo(ArrayList<Vehiculo> vehiculos){
+    public AdaptadorVehiculo(ArrayList<Vehiculo> vehiculos, OnVehiculoClickListener clickListener){
         this.vehiculos = vehiculos;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -26,11 +28,18 @@ public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.Pe
 
     @Override
     public void onBindViewHolder(@NonNull PersonaViewHolder holder, int position) {
-        Vehiculo v = vehiculos.get(position);
-        holder.foto.setImageResource(v.getFoto());
-        holder.placa.setText(v.getPlaca());
-        holder.marca.setText(v.getMarca());
-        holder.linea.setText(v.getLinea());
+        final Vehiculo vh = vehiculos.get(position);
+        holder.foto.setImageResource(vh.getFoto());
+        holder.placa.setText(vh.getPlaca());
+        holder.marca.setText(vh.getMarca());
+        holder.linea.setText(vh.getLinea());
+
+        holder.v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onVehiculoClick(vh);
+            }
+        });
     }
 
     @Override
@@ -39,7 +48,7 @@ public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.Pe
     }
 
     public static class PersonaViewHolder extends RecyclerView.ViewHolder{
-        private ImageView foto;
+        private CircleImageView foto;
         private TextView placa;
         private TextView marca;
         private TextView linea;
@@ -53,5 +62,9 @@ public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.Pe
             marca = v.findViewById(R.id.lblMarca);
             linea = v.findViewById(R.id.lblLinea);
         }
+    }
+
+    public interface OnVehiculoClickListener{
+        void onVehiculoClick(Vehiculo p);
     }
 }

@@ -28,6 +28,7 @@ public class AgregarVehiculo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_vehiculo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // USOS
         cmb_USOS = findViewById(R.id.cmbUso);
