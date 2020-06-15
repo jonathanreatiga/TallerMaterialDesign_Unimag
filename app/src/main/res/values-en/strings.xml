@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TallerMaterialDesign</string>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="uso_Particular">" Particular"</string>
+    <string name="uso_Publico">Public</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="txtTituloAgregarVehiculo">ADD VEHICLE</string>
+    <string name="placa">Plaque</string>
+    <string name="marca">Brand</string>
+    <string name="linea">Line</string>
+    <string name="modelo">Model</string>
+    <string name="btnAgregarVehiculo">Add</string>
+    <string name="btnLimpiarVehiculo">Clean</string>
+    <string name="mensaje_guardado_correcto">Vehicle saved successfully</string>
+    <string name="titulo_detalle">Vehicle Detail</string>
+    <string name="etiqueta_boton_eliminar">Remove</string>
+    <string name="titulo_eliminar_persona">" Delete Vehicle"</string>
+    <string name="pregunta_mensaje_eliminar">Are you sure you want to remove this vehicle?</string>
+    <string name="opcion_si">Yes</string>
+    <string name="opcion_no">Not</string>
+    <string name="titulo_ventana_seleccionar_foto">Select the photo</string>
+    <string name="placa_duplicada">The plate is already registered</string>
+    <string name="error_CampoVacio">Empty field</string>
+    <string name="uso">Use</string>
+</resources>

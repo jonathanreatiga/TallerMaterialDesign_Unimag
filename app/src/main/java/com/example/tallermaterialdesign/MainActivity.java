@@ -2,23 +2,18 @@ package com.example.tallermaterialdesign;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.View;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo.OnVehiculoClickListener{
@@ -32,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo
 
         FloatingActionButton fab;
         RecyclerView lstVehiculos;
-        //ArrayList<Vehiculo> vehiculos;
         final ArrayList<Vehiculo> vehiculos;
         LinearLayoutManager llm;
         final AdaptadorVehiculo adapter;
@@ -40,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo
         DatabaseReference databaseReference;
         String db = "Vehiculos";
         lstVehiculos = findViewById(R.id.lstVehiculo);
-        //vehiculos = Datos.obtener();
         vehiculos = new ArrayList<>();
 
         llm = new LinearLayoutManager(this);
@@ -92,11 +85,9 @@ public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo
         bundle.putString("placa", vh.getPlaca());
         bundle.putString("marca", vh.getMarca());
         bundle.putString("linea", vh.getLinea());
-        //bundle.putInt("foto", vh.getFoto());
 
         intent = new Intent(MainActivity.this, DetalleVehiculo.class);
         intent.putExtra("datos", bundle);
         startActivity(intent);
-        //finish();
     }
 }

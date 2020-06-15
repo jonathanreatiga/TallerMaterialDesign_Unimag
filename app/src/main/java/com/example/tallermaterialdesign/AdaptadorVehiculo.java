@@ -5,25 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.PersonaViewHolder>{
     private ArrayList<Vehiculo> vehiculos;
+    private static ArrayList<Vehiculo> _vehiculos2;
     private OnVehiculoClickListener clickListener;
 
     public AdaptadorVehiculo(ArrayList<Vehiculo> vehiculos, OnVehiculoClickListener clickListener){
         this.vehiculos = vehiculos;
         this.clickListener = clickListener;
+        this._vehiculos2 = vehiculos;
     }
 
     @Override
@@ -46,8 +45,6 @@ public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.Pe
             }
         });
 
-
-        //holder.foto.setImageResource(vh.getFoto());
         holder.placa.setText(vh.getPlaca());
         holder.marca.setText(vh.getMarca());
         holder.linea.setText(vh.getLinea());
@@ -84,5 +81,9 @@ public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.Pe
 
     public interface OnVehiculoClickListener{
         void onVehiculoClick(Vehiculo p);
+    }
+
+    public static ArrayList<Vehiculo>  ObtenerListaVehiculos(){
+        return _vehiculos2;
     }
 }

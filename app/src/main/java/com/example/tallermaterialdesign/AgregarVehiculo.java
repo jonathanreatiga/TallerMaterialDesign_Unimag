@@ -12,12 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -71,16 +69,56 @@ public class AgregarVehiculo extends AppCompatActivity {
         _marca = marca.getText().toString();
         _linea = linea.getText().toString();
         _modelo = modelo.getText().toString();
-        _linea = linea.getText().toString();
         foto = foto_aleatoria();
         _id = Datos.getId();
-
         vehiculo = new Vehiculo(_placa, _marca, _linea, _modelo, _uso, foto, _id);
-        vehiculo.guardar();
-        subir_foto(_id);
-        limpiar();
-        imp.hideSoftInputFromWindow(placa.getWindowToken(),0);
-        Snackbar.make(v, getString(R.string.mensaje_guardado_correcto),Snackbar.LENGTH_LONG).show();
+
+        if (validar(_placa)){
+            vehiculo.guardar();
+            subir_foto(_id);
+            limpiar();
+            imp.hideSoftInputFromWindow(placa.getWindowToken(),0);
+            Snackbar.make(v, getString(R.string.mensaje_guardado_correcto),Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean validar(String _placa){
+        String error_PlacaDuplicada = getResources().getString(R.string.placa_duplicada);
+        String error_CampoVacio = getResources().getString(R.string.error_CampoVacio);
+
+        if(placa.getText().toString().isEmpty()){
+            placa.setError(error_CampoVacio);
+            placa.requestFocus();
+            return false;
+        }
+
+        if(marca.getText().toString().isEmpty()){
+            marca.setError(error_CampoVacio);
+            marca.requestFocus();
+            return false;
+        }
+
+        if(linea.getText().toString().isEmpty()){
+            linea.setError(error_CampoVacio);
+            linea.requestFocus();
+            return false;
+        }
+
+        if(modelo.getText().toString().isEmpty()){
+            modelo.setError(error_CampoVacio);
+            modelo.requestFocus();
+            return false;
+        }
+
+        ArrayList<Vehiculo> lista_vehiculos = AdaptadorVehiculo.ObtenerListaVehiculos();
+        for (Vehiculo vehiculo:lista_vehiculos) {
+            if(_placa.equals(vehiculo.getPlaca())){
+                placa.setError(error_PlacaDuplicada);
+                placa.requestFocus();
+                return false;
+            }
+        }
+        return true;
     }
 
     public void subir_foto(String id){
