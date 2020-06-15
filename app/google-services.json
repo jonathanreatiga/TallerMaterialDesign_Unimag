@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "828594018275",
+    "firebase_url": "https://tallermaterialdesignunimag.firebaseio.com",
+    "project_id": "tallermaterialdesignunimag",
+    "storage_bucket": "tallermaterialdesignunimag.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828594018275:android:e7a60820394ee33df4b2d6",
+        "android_client_info": {
+          "package_name": "com.example.tallermaterialdesign"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828594018275-gl3h50vnm0o0mg5bsdn713pf4p9un9ae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tallermaterialdesign",
+            "certificate_hash": "c15e7b68b66073910341f507903dbf040b4bc3e6"
+          }
+        },
+        {
+          "client_id": "828594018275-dc2ccv5bpg9agadcrsu06r16cilo7pcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-qdgZmnwTSu3dNjU9aJfZi3XcQnevix8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828594018275-dc2ccv5bpg9agadcrsu06r16cilo7pcd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

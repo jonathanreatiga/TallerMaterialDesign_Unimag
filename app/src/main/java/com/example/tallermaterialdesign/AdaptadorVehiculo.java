@@ -1,5 +1,6 @@
 package com.example.tallermaterialdesign;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -27,9 +33,21 @@ public class AdaptadorVehiculo extends RecyclerView.Adapter<AdaptadorVehiculo.Pe
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PersonaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PersonaViewHolder holder, int position) {
         final Vehiculo vh = vehiculos.get(position);
-        holder.foto.setImageResource(vh.getFoto());
+
+        StorageReference storageReference;
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        storageReference.child(vh.getId()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(holder.foto);
+            }
+        });
+
+
+        //holder.foto.setImageResource(vh.getFoto());
         holder.placa.setText(vh.getPlaca());
         holder.marca.setText(vh.getMarca());
         holder.linea.setText(vh.getLinea());

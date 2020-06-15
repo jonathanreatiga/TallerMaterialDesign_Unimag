@@ -5,15 +5,19 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import java.util.ArrayList;
 
@@ -28,12 +32,17 @@ public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo
 
         FloatingActionButton fab;
         RecyclerView lstVehiculos;
-        ArrayList<Vehiculo> vehiculos;
+        //ArrayList<Vehiculo> vehiculos;
+        final ArrayList<Vehiculo> vehiculos;
         LinearLayoutManager llm;
-        AdaptadorVehiculo adapter;
+        final AdaptadorVehiculo adapter;
 
+        DatabaseReference databaseReference;
+        String db = "Vehiculos";
         lstVehiculos = findViewById(R.id.lstVehiculo);
-        vehiculos = Datos.obtener();
+        //vehiculos = Datos.obtener();
+        vehiculos = new ArrayList<>();
+
         llm = new LinearLayoutManager(this);
         adapter = new AdaptadorVehiculo(vehiculos, this);
 
@@ -42,6 +51,28 @@ public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo
         lstVehiculos.setAdapter(adapter);
 
         fab = findViewById(R.id.btnAgregar);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child(db).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                vehiculos.clear();
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                        Vehiculo p = snapshot.getValue(Vehiculo.class);
+                        vehiculos.add(p);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                Datos.setVehiculos(vehiculos);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     public void agregar(View v){
@@ -57,10 +88,11 @@ public class MainActivity extends AppCompatActivity implements AdaptadorVehiculo
         Bundle bundle;
 
         bundle = new Bundle();
+        bundle.putString("id", vh.getId());
         bundle.putString("placa", vh.getPlaca());
         bundle.putString("marca", vh.getMarca());
         bundle.putString("linea", vh.getLinea());
-        bundle.putInt("foto", vh.getFoto());
+        //bundle.putInt("foto", vh.getFoto());
 
         intent = new Intent(MainActivity.this, DetalleVehiculo.class);
         intent.putExtra("datos", bundle);

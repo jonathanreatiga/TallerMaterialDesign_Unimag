@@ -13,7 +13,16 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="@string/txtTituloAgregarVehiculo"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgFotoSeleccionada"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="seleccionar_foto"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <EditText
         android:id="@+id/txtPlaca"

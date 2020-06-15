@@ -7,6 +7,10 @@ public class Vehiculo {
     private String modelo;
     private String uso;
     private int foto;
+    private String id;
+
+    public Vehiculo(){
+    }
 
     public Vehiculo(String placa, String marca, String linea, String modelo, String uso, int foto){
         this.placa = placa;
@@ -15,6 +19,21 @@ public class Vehiculo {
         this.modelo=modelo;
         this.uso=uso;
         this.foto = foto;
+        this.id = id;
+    }
+
+    public Vehiculo(String placa, String marca, String linea, String modelo, String uso, int foto, String id){
+        this.placa = placa;
+        this.marca = marca;
+        this.linea=linea;
+        this.modelo=modelo;
+        this.uso=uso;
+        this.foto = foto;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getPlaca() {
